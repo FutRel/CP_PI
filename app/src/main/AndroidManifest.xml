@@ -11,8 +11,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CP_PI">
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity
+                android:name=".NewProductActivity"
+                android:exported="false"/>
+        <activity android:name=".HomeActivity"/>
+        <activity android:name=".RegisterActivity"/>
         <activity
                 android:name=".MainActivity"
                 android:exported="true">
