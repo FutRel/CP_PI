@@ -8,14 +8,14 @@
 
 
     <EditText
-            android:id="@+id/loginUser"
+            android:id="@+id/regUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Логин" />
 
 
     <EditText
-            android:id="@+id/loginPass"
+            android:id="@+id/regPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Пароль"
@@ -23,15 +23,8 @@
 
 
     <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Войти" />
-
-
-    <Button
-            android:id="@+id/btnToRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Регистрация" />
+            android:text="Создать аккаунт" />
 </LinearLayout>
