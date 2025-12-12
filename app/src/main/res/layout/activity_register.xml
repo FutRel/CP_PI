@@ -12,6 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="12dp"
+            android:textColorHint="@color/textDark"
+            android:textColor="@color/textDark"
             android:background="@drawable/rounded_input"
             android:hint="Логин" />
 
@@ -20,6 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="12dp"
+            android:textColorHint="@color/textDark"
+            android:textColor="@color/textDark"
             android:background="@drawable/rounded_input"
             android:inputType="textPassword"
             android:hint="Пароль"
