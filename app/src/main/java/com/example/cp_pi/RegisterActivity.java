@@ -1,5 +1,6 @@
 package com.example.cp_pi;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,7 +10,7 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText etUser, etPass;
-    Button btnReg;
+    Button btnReg, btnBack;
     DBHelper db;
 
     @Override
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
         etUser = findViewById(R.id.regUser);
         etPass = findViewById(R.id.regPass);
         btnReg = findViewById(R.id.btnRegister);
+        btnBack = findViewById(R.id.btnBack);
         db = new DBHelper(this);
 
         btnReg.setOnClickListener(v -> {
@@ -36,6 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Ошибка: логин занят", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         });
     }
 }
