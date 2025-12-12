@@ -18,7 +18,7 @@ public class NewProductActivity extends AppCompatActivity {
 
     EditText etName, etPrice;
     ImageView img;
-    Button btnChoose, btnSave;
+    Button btnChoose, btnSave, btnBk;
 
     String savedImagePath = null;
     DBHelper db;
@@ -35,6 +35,7 @@ public class NewProductActivity extends AppCompatActivity {
         //img = findViewById(R.id.newImage);
         btnChoose = findViewById(R.id.btnChoosePhoto);
         btnSave = findViewById(R.id.btnSave);
+        btnBk = findViewById(R.id.btnBk);
 
         db = new DBHelper(this);
 
@@ -46,6 +47,10 @@ public class NewProductActivity extends AppCompatActivity {
             db.insertProduct(name, price, savedImagePath);
             Toast.makeText(this, "Добавлено", Toast.LENGTH_SHORT).show();
             finish();
+        });
+
+        btnBk.setOnClickListener(view -> {
+            startActivity(new Intent(NewProductActivity.this, HomeActivity.class));
         });
     }
 

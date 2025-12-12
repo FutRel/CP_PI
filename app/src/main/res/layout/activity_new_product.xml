@@ -1,48 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="24dp">
-
-
-    <EditText
-            android:id="@+id/inputName"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Название" />
+            android:layout_height="match_parent"
+            android:padding="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/bgLight">
 
-
-    <EditText
-            android:id="@+id/inputPrice"
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Цена"
-            android:inputType="number" />
+            android:layout_height="wrap_content">
 
+        <EditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_input"
+                android:padding="12dp"
+                android:hint="Название"/>
 
-    <Button
-            android:id="@+id/btnChoosePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Выбрать фото" />
+        <EditText
+                android:id="@+id/inputPrice"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_input"
+                android:padding="12dp"
+                android:hint="Цена"
+                android:inputType="number"
+                android:layout_marginTop="12dp"/>
 
+        <Button
+                android:id="@+id/btnChoosePhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_round_gray"
+                android:text="Выбрать фото"
+                android:layout_marginTop="12dp"/>
 
-    <ImageView
-            android:id="@+id/imgPreview"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+        <ImageView
+                android:id="@+id/imgPreview"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_input"
+                android:scaleType="centerCrop"/>
 
+        <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Сохранить"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_round_green"
+                android:layout_marginTop="24dp"/>
 
-    <Button
-            android:id="@+id/btnSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Сохранить"
-            android:layout_marginTop="20dp" />
+        <Button
+                android:id="@+id/btnBk"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Назад"
+                android:textColor="@color/textDark"
+                android:background="@drawable/btn_round_green"
+                android:layout_marginTop="24dp"/>
 
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

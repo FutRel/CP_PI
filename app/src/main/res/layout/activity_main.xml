@@ -2,36 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
+              android:padding="24dp"
               android:gravity="center"
-              android:padding="24dp">
-
+              android:background="@color/bgLight"
+              android:orientation="vertical">
 
     <EditText
             android:id="@+id/loginUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_input"
             android:hint="Логин" />
-
 
     <EditText
             android:id="@+id/loginPass"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_input"
             android:hint="Пароль"
-            android:inputType="textPassword" />
-
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"/>
 
     <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Войти" />
-
+            android:layout_height="50dp"
+            android:text="Войти"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btn_round_green"
+            android:layout_marginTop="18dp"/>
 
     <Button
             android:id="@+id/btnToRegister"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Регистрация" />
+            android:layout_height="50dp"
+            android:text="Регистрация"
+            android:textColor="@color/textDark"
+            android:background="@drawable/btn_round_gray"
+            android:layout_marginTop="10dp"/>
 </LinearLayout>
