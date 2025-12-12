@@ -17,6 +17,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().hide();
+
         etUser = findViewById(R.id.regUser);
         etPass = findViewById(R.id.regPass);
         btnReg = findViewById(R.id.btnRegister);
@@ -26,7 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
             String u = etUser.getText().toString();
             String p = etPass.getText().toString();
 
-            if (db.insertUser(u, p)) {
+            String h = PasswordUtils.hash(p);
+
+            if (db.insertUser(u, h)) {
                 Toast.makeText(this, "Регистрация успешна", Toast.LENGTH_SHORT).show();
                 finish();
             } else {

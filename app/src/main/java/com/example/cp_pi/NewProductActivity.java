@@ -28,6 +28,8 @@ public class NewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_product);
 
+        getSupportActionBar().hide();
+
         etName = findViewById(R.id.inputName);
         etPrice = findViewById(R.id.inputPrice);
         //img = findViewById(R.id.newImage);

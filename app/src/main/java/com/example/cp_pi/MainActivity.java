@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         etUser = findViewById(R.id.loginUser);
         etPass = findViewById(R.id.loginPass);
         btnLogin = findViewById(R.id.btnLogin);
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
             String u = etUser.getText().toString();
             String p = etPass.getText().toString();
 
-            if (db.checkLogin(u, p)) {
+            String h = PasswordUtils.hash(p);
+
+            if (db.checkLogin(u, h)) {
                 Toast.makeText(this, "Успешный вход", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 finish();

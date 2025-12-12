@@ -19,6 +19,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        getSupportActionBar().hide();
+
         recycler = findViewById(R.id.recyclerProducts);
         btnAdd = findViewById(R.id.btnAddProduct);
         db = new DBHelper(this);
