@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Назад"
-            android:textColor="@color/textDark"
+            android:textColor="@android:color/white"
             android:background="@drawable/btn_round_gray"
             android:layout_marginTop="10dp" />
 </LinearLayout>

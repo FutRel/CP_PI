@@ -1,50 +1,61 @@
 package com.example.cp_pi;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Holder> {
 
-    List<Product> list;
+    List<Product> products;
 
-    public ProductAdapter(List<Product> list) { this.list = list; }
+    public ProductAdapter(List<Product> products) {
+        this.products = products;
+    }
 
+    @NonNull
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_product, parent, false);
         return new Holder(v);
     }
 
     @Override
-    public void onBindViewHolder(Holder h, int pos) {
-        Product p = list.get(pos);
+    public void onBindViewHolder(@NonNull Holder h, int position) {
+        Product p = products.get(position);
+
         h.name.setText(p.name);
         h.price.setText(p.price + " ₽");
 
+        // показываем картинку
         if (p.image != null) {
-            Bitmap bmp = BitmapFactory.decodeFile(p.image);
-            h.image.setImageBitmap(bmp);
+            h.image.setImageBitmap(BitmapFactory.decodeFile(p.image));
         }
     }
 
     @Override
-    public int getItemCount() { return list.size(); }
+    public int getItemCount() {
+        return products.size();
+    }
 
-    class Holder extends RecyclerView.ViewHolder {
-        TextView name, price;
+    static class Holder extends RecyclerView.ViewHolder {
+
         ImageView image;
-        Holder(View v) {
+        TextView name, price;
+
+        public Holder(View v) {
             super(v);
-            name = v.findViewById(R.id.txtName);
-            price = v.findViewById(R.id.txtPrice);
-            image = v.findViewById(R.id.imgProduct);
+            image = v.findViewById(R.id.itemImage);
+            name = v.findViewById(R.id.itemName);
+            price = v.findViewById(R.id.itemPrice);
         }
     }
 }

@@ -32,7 +32,7 @@ public class NewProductActivity extends AppCompatActivity {
 
         etName = findViewById(R.id.inputName);
         etPrice = findViewById(R.id.inputPrice);
-        //img = findViewById(R.id.newImage);
+        img = findViewById(R.id.newImage);
         btnChoose = findViewById(R.id.btnChoosePhoto);
         btnSave = findViewById(R.id.btnSave);
         btnBk = findViewById(R.id.btnBk);
@@ -64,19 +64,25 @@ public class NewProductActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
-        if (req == 1 && res == Activity.RESULT_OK) {
+
+        if (req == 1 && res == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
+
             try {
                 Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 img.setImageBitmap(bmp);
 
-                File f = new File(getFilesDir(), "img" + System.currentTimeMillis() + ".png");
-                FileOutputStream out = new FileOutputStream(f);
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, out);
-                out.close();
+                // сохраняем bitmap во внутреннюю память
+                File file = new File(getFilesDir(), "img_" + System.currentTimeMillis() + ".png");
+                FileOutputStream fos = new FileOutputStream(file);
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
 
-                savedImagePath = f.getAbsolutePath();
-            } catch (Exception ignored) {}
+                savedImagePath = file.getAbsolutePath();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
