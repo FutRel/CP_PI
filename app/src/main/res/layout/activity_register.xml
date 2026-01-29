@@ -29,6 +29,31 @@
             android:hint="Пароль"
             android:layout_marginTop="10dp" />
 
+    <RadioGroup
+            android:id="@+id/radioGroupRole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+        <RadioButton
+                android:id="@+id/radioUser"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Пользователь"
+                android:checked="true"
+                android:textColor="@color/textDark"/>
+
+        <RadioButton
+                android:id="@+id/radioSeller"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Продавец"
+                android:textColor="@color/textDark"/>
+    </RadioGroup>
+
     <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"

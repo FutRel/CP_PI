@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:background="@color/bgLight"
@@ -7,10 +8,20 @@
               android:layout_height="match_parent">
 
     <Button
+            android:id="@+id/btnAddProduct"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Добавить товар"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btn_round_green" />
+
+    <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Выйти"
+            android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
             android:background="@drawable/btn_round_gray" />
 

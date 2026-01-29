@@ -18,8 +18,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)");
-        db.execSQL("CREATE TABLE products(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price REAL, image TEXT)");
+        db.execSQL("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT, role TEXT DEFAULT 'user')");
+        db.execSQL("CREATE TABLE products(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price REAL, image TEXT, seller_id INTEGER)");
     }
 
     @Override
@@ -29,29 +29,45 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Boolean insertUser(String username, String password) {
+    public Boolean insertUser(String username, String password, String role) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("username", username);
         cv.put("password", password);
+        cv.put("role", role);
         return db.insert("users", null, cv) != -1;
     }
 
-    public Boolean checkLogin(String username, String password) {
+    public User checkLogin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        //test string to operate (test) with db
-        //db.execSQL("INSERT INTO products(name, price, image) VALUES ('Мочалка', '120', 'img1.png'), ('Поплавок', '20', 'img2.png'), ('Обувь мужская', '1200', 'img3.png'), ('Трактор', '120000', 'img4.png'), ('Усилитель связи', '5000', 'img5.png')");
-        Cursor c = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
-        return c.getCount() > 0;
+        Cursor c = db.rawQuery("SELECT id, username, role FROM users WHERE username=? AND password=?",
+                new String[]{username, password});
+        if (c.moveToFirst()) {
+            return new User(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getString(2)
+            );
+        }
+        return null;
     }
 
-    public Boolean insertProduct(String name, double price, String image) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("name", name);
-        cv.put("price", price);
-        cv.put("image", image);
-        return db.insert("products", null, cv) != -1;
+    public List<Product> getProductsBySeller(int sellerId) {
+        List<Product> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM products WHERE seller_id=?",
+                new String[]{String.valueOf(sellerId)});
+
+        while (c.moveToNext()) {
+            list.add(new Product(
+                    c.getInt(0),
+                    c.getString(1),
+                    c.getDouble(2),
+                    c.getString(3),
+                    sellerId
+            ));
+        }
+        return list;
     }
 
     public List<Product> getProducts() {
@@ -65,9 +81,40 @@ public class DBHelper extends SQLiteOpenHelper {
                     c.getInt(0),
                     c.getString(1),
                     c.getDouble(2),
-                    c.getString(3)
+                    c.getString(3),
+                    c.getInt(4)
             ));
         }
         return list;
+    }
+
+    public Boolean insertProduct(String name, double price, String image, int sellerId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        cv.put("price", price);
+        cv.put("image", image);
+        cv.put("seller_id", sellerId);
+        return db.insert("products", null, cv) != -1;
+    }
+
+    public Boolean deleteProduct(int productId, int sellerId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("products", "id=? AND seller_id=?",
+                new String[]{String.valueOf(productId), String.valueOf(sellerId)}) > 0;
+    }
+
+    public Boolean updateProduct(int productId, String name, double price, String imagePath, int sellerId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        cv.put("price", price);
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            cv.put("image", imagePath);
+        }
+
+        return db.update("products", cv, "id=? AND seller_id=?",
+                new String[]{String.valueOf(productId), String.valueOf(sellerId)}) > 0;
     }
 }

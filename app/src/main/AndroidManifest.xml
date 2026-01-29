@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
@@ -15,10 +15,16 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.CP_PI">
         <activity
+                android:name=".SellerActivity"
+                android:exported="false"
+                android:label="@string/title_activity_seller"
+                android:theme="@style/Theme.CP_PI"/>
+        <activity
                 android:name=".NewProductActivity"
                 android:exported="false"/>
         <activity android:name=".HomeActivity"/>
         <activity android:name=".RegisterActivity"/>
+        <activity android:name=".EditProductActivity" />
         <activity
                 android:name=".MainActivity"
                 android:exported="true">

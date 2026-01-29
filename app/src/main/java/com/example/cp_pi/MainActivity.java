@@ -1,11 +1,13 @@
 package com.example.cp_pi;
 
+import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         etUser = findViewById(R.id.loginUser);
         etPass = findViewById(R.id.loginPass);
@@ -31,10 +34,23 @@ public class MainActivity extends AppCompatActivity {
             String p = etPass.getText().toString();
 
             String h = PasswordUtils.hash(p);
+            User user = db.checkLogin(u, h);
 
-            if (db.checkLogin(u, h)) {
+            if (user != null) {
                 Toast.makeText(this, "Успешный вход", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+
+                SharedPreferences sharedPref = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("user_id", user.getId());
+                editor.putString("username", user.getUsername());
+                editor.putString("role", user.getRole());
+                editor.apply();
+
+                if (user.isSeller()) {
+                    startActivity(new Intent(MainActivity.this, SellerActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                }
                 finish();
             } else {
                 Toast.makeText(this, "Неверные данные", Toast.LENGTH_SHORT).show();
