@@ -23,6 +23,7 @@
                 android:name=".NewProductActivity"
                 android:exported="false"/>
         <activity android:name=".HomeActivity"/>
+        <activity android:name=".AdminActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".EditProductActivity" />
         <activity

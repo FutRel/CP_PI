@@ -15,4 +15,5 @@ public class User {
     public String getUsername() { return username; }
     public String getRole() { return role; }
     public boolean isSeller() { return "seller".equals(role); }
+    public boolean isAdmin() { return "admin".equals(role); }
 }

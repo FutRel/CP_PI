@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (user.isSeller()) {
                     startActivity(new Intent(MainActivity.this, SellerActivity.class));
+                } else if (user.isAdmin()) {
+                    startActivity(new Intent(MainActivity.this, AdminActivity.class));
                 } else {
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
