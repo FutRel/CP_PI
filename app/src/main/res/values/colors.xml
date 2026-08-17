@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="accentGreen">#34C759</color> <!-- iOS green -->
+    <color name="bgLight">#FFFFFF</color>
+    <color name="textDark">#222222</color>
+    <color name="textGray">#777777</color>
+    <color name="cardBackground">#F7F7F7</color>
+    <color name="my_green">#21A366</color>        <!-- красивый зелёный -->
+    <color name="my_green_light">#D7F5E6</color>  <!-- светло-зелёный -->
 </resources>
